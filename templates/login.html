@@ -1,0 +1,47 @@
+{% extends 'Base.html' %} {% block title %}Login{% endblock %} {% block content
+%} {% if message %} {{ message }}
+<br />
+{% endif %}
+
+<div>
+  <h1>Sign up Page</h1>
+  <form action="{{url_for('login')}}" method="post" style="padding: 5px">
+    <p>
+      <label for="fname">First Name:</label>
+      <br />
+      <input type="text" id="fname" name="fname" required/>
+      <br />
+      <label for="sname">Second Name:</label>
+      <br />
+      <input type="text" id="sname" name="sname" required/>
+      <br />
+    </p>
+    <p>
+      <label for="email">Email:</label>
+      <br />
+      <input type="text" id="email" name="email" />
+      <br />
+      <label for="password">Password:</label>
+      <br />
+      <input type="password1" id="password1" name="password1" required/>
+      <br />
+      <label for="password2">Confirm password</label>
+      <br />
+      <input type="password2" id="password2" name="password2" required>
+      <br />
+      <input type="submit" value="SignUp" />
+    </p>
+    <br />
+  </form>
+</div>
+{% block myjavascript %}
+<script text="javascript">
+
+document.querySelector("form").addEventListener("submit", e => {
+    const password1 = document.getElementById("password1");
+    const password2 = document.getElementById("password2")
+    
+})
+  
+</script>
+{% endblock %} {% endblock %}

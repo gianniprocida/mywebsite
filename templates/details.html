@@ -1,0 +1,65 @@
+{% extends 'Base.html' %}
+{% block title %}Details{% endblock %}
+
+
+{% block content %}
+
+<div style="float:left; border-style:double;">
+    <img src="{{url_for('static',filename=politicians['id'] | string + '.jpg')}}" height="250">
+</div>
+<div style="float:left; margin:100px">
+    <h1></h1>
+    <p><b>Age</b></p>
+    <p><b>Party</b></p>
+</div>
+
+<button id="mybtn" >Menu</button>
+<div id="dropdown" class="hidden">
+  <a>Home</a>
+</div>
+
+{% endblock %}
+
+{% block myjavascript %}
+<script type="text/javascript">
+var ListofJsonStr = {{ ListofJsonStr | tojson }}
+var ListofJObj = [];
+var mybtn = document.getElementById("mybtn");
+var dropdown = document.getElementById("dropdown");
+
+
+
+var createdropmenuItems = function(){
+  for (i = 0; i < ListofJsonStr.length; i++){
+    Jobj = JSON.parse(ListofJsonStr[i]);
+    ListofJObj[i] = Jobj;
+    let a = document.createElement('a');
+    a.setAttribute("href",Jobj['Link'])
+    a.innerHTML = Jobj['Title'];
+    dropdown.appendChild(a)
+ }
+}
+
+createdropmenuItems()
+
+
+
+mybtn.onclick = function() {
+ dropdown.classList.toggle('show');
+}
+
+
+
+
+var students = [{ name: "Mary", age: 10,
+    grades: [90, 88, 95]
+  },
+  {
+    name: "Joseph",
+    age: 11,
+    grades: [80, 100, 90, 96]
+  }
+];
+ 
+</script>
+{% endblock %}

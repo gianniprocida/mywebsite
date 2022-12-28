@@ -1,0 +1,137 @@
+{% extends 'Base.html' %} {% block title %}Details{% endblock %} {% block
+content %}
+<h1>Survey</h1>
+<br>
+<div id="content1">
+  <form id="myform1"></form>
+</div>
+<br />
+<div id="content2">
+  <form id="myform2"></form>
+</div>
+{% endblock %} {% block myjavascript %}
+<script type="text/javascript">
+ const survey1 = [
+    { statement: "On a scale from 0 to 10, how would you rate our product?" },
+    {
+      statement:
+        "On a scale from 0 to 10, how likely are you to recommend this product to others?",
+    },
+    {
+      statement:
+        "On a scale of 1-10, how would you rate the performance of your website?",
+    },
+  ];
+
+  const survey2 = [
+    { statement: "What task did you want to accomplish on this website?" },
+    { statement: "What did you like about our product?" },
+    { statement: "How could we improve our product?" },
+  ];
+
+  let InpAttr1 = {
+    type: "number",
+    min: 1,
+    max: 10,
+    required: true,
+  };
+
+  let InpAttr2 = {
+    type: "text",
+    required: true,
+  };
+
+  let setAttInp = (inp, Attr) => {
+    for (var key in Attr) {
+      inp.setAttribute(key, Attr[key]);
+    }
+  };
+
+  let br = () => {
+    return document.createElement("br");
+  };
+
+  let AppendSubmitToForm = (form) => {
+    const submit = document.createElement("input");
+    submit.setAttribute("type", "submit");
+    submit.setAttribute("value", "submit");
+    form.appendChild(submit);
+  };
+
+  survey1.forEach((elem, ind) => {
+    const div = document.getElementById("content1");
+    const form = document.getElementById("myform1");
+    const input = document.createElement("input");
+    setAttInp(input, InpAttr1);
+
+    const span = document.createElement("span");
+
+    span.innerHTML = `<strong>Question ${ind + 1}:</strong> ` + elem.statement;
+    span.appendChild(br());
+    span.appendChild(input);
+    span.appendChild(br());
+    span.appendChild(br());
+    form.appendChild(span);
+    div.append(form);
+  });
+
+  survey2.forEach((elem, ind) => {
+    const shift = 4;
+    const div = document.getElementById("content2");
+    const form = document.getElementById("myform2");
+    const input = document.createElement("input");
+    const submit = document.createElement("input");
+
+    setAttInp(input, InpAttr2);
+
+    const span = document.createElement("span");
+
+    span.innerHTML =
+      `<strong>Question ${ind + shift}:</strong> ` + elem.statement;
+    span.appendChild(br());
+    span.appendChild(input);
+    span.appendChild(br());
+    span.appendChild(br());
+    form.appendChild(span);
+    div.append(form);
+  });
+
+  const form1 = document.getElementById("myform1");
+  const form2 = document.getElementById("myform2");
+
+  AppendSubmitToForm(form1);
+  AppendSubmitToForm(form2);
+
+  document.getElementById("myform1").addEventListener("submit", (e) => {
+    var results = Array.from(document.querySelectorAll("input[type=number]"));
+    var obj = {};
+
+    results.forEach((el, index) => {
+      console.log(el.value);
+      console.log((survey1[index].answer = el.value));
+    });
+    console.log(survey1);
+    e.preventDefault();
+  });
+
+  document.getElementById("myform2").addEventListener("submit", (e) => {
+    var results = Array.from(document.querySelectorAll("input[type=text]"));
+
+    results.forEach((el, index) => {
+      console.log(el.value);
+      console.log((survey2[index].answer = el.value));
+    });
+
+    e.preventDefault();
+  });
+ /*
+  const request = new XMLHttpRequest()
+
+  request.open('POST',`/ProcessInfo/${JSON.stringify(survey1)}`)
+  request.send();
+
+  console.log(survey1)
+  console.log(survey2)
+  */
+</script>
+{% endblock %}

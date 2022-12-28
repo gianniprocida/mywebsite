@@ -1,0 +1,45 @@
+{% extends 'Base.html' %} {% block title %}Details{% endblock %} {% block
+content %}
+<h1>Technologies</h1>
+<div class="imageCarousel">
+  <img src="static/backend.jpg" />
+  <button id="nextbtn">></button>
+  <button id="prevbtn"><</button>
+</div id="survey">
+<br >
+   
+{% endblock %} {% block myjavascript %}
+<script type="text/javascript">
+
+  var images = [
+    "static/backend.jpg",
+    "static/frontend.jpg",
+    "static/python.jpg",
+    "static/SQLA.jpg",
+    "static/SQlite.jpg",
+  ];
+  var img = document.querySelector("img");
+  var nextbtn = document.getElementById("nextbtn");
+  var prevbtn = document.getElementById("prevbtn");
+
+  var currentIndex = 0;
+
+  nextbtn.onclick = function IncrementIndex() {
+    currentIndex += 1;
+    if (currentIndex > images.length - 1) {
+      currentIndex = 0;
+    }
+    return img.setAttribute("src", images[currentIndex]);
+  };
+
+  prevbtn.onclick = function DecrementIndex() {
+    currentIndex -= 1;
+    if (currentIndex < 0) {
+      currentIndex = images.length - 1;
+    }
+    return img.setAttribute("src", images[currentIndex]);
+  };
+
+
+</script>
+{% endblock %}

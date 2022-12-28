@@ -1,0 +1,25 @@
+{% extends 'Base.html' %}
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+<h1>Data</h1>
+<table id="mytable">
+    <tr>
+        <th>id</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Party</th>
+    </tr>
+    {% for p in politicians %}
+    <tr>
+        <td>
+            <a href="{{url_for('details',id=p['id'])}}">
+            <img src="{{url_for('static',filename=p['id']|string + '.jpg')}}">
+            </a> </td>
+        <td>{{p['id']}}</td>
+        <td>{{p['Age']}}</td>
+        <td>{{p['Party']}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
