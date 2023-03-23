@@ -6,7 +6,7 @@
 <body>
     <h1>Problem Statement</h1>
     <hr>
-     <p> Developer database-Driven Web App with Python, Flask</p>
+     <p> Develop database-Driven Web App with Python, Flask</p>
     <h2>Final approach</h2>
    Data are extracted through web scraping, after which they are loaded to a database. Designing the website
   <ul>  
@@ -18,7 +18,7 @@
      <li>Step 1: Create a base application</li>
      <li>Step 2: Use HTML templates (with JavaScript)</li>
      <li>Step 3: Set up the database.</li>
-     <li>Display the data</li>
+     <li>Step 4: Display the data</li>
    </ul>     
      <h2>Codes</h2>
     <ul>
